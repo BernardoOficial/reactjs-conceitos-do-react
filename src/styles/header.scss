@@ -1,0 +1,19 @@
+.to-do__header {
+	height: 284px;
+	background-color: var(--blue);
+	text-align: center;
+
+	@media screen and (max-width: 650px) {
+		height: 124px;
+	}
+
+	&-image {
+		display: inline-block;
+		text-align: center;
+		margin-top: 64px;
+
+		@media screen and (max-width: 650px) {
+			margin-top: 40px;
+		}
+	}
+}

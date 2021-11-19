@@ -1,0 +1,45 @@
+.to-do__feedback {
+	position: fixed;
+	top: 30px;
+	right: -100%;
+	transition: 1s ease-in;
+	background-color: #323232;
+	box-shadow: 0 0 5px 1px rgba(0,0,0,0.2);
+	border-radius: 0.5rem;
+	width: 250px;
+	height: 50px;
+	overflow: hidden;
+
+	&--active {
+		right: 30px;
+	}
+
+	&--error {
+		background-color: var(--error);
+	}
+	&--sucess {
+		background-color: var(--green);
+	}
+
+	&-message {
+		color: #ffffff;
+		font-size: 12px;
+		padding: 8px 14px;
+		font-weight: 400;
+	}
+
+	&-regressiva {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		height: 3px;
+
+		span {
+			transition: 0.4s ease-in;
+			display: block;
+			height: 3px;
+			background-color: var(--background);
+		}
+	}
+
+}

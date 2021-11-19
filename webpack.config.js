@@ -17,7 +17,8 @@ module.exports = {
     },
     devServer: {
         static: path.resolve(__dirname, 'public'),
-        hot: true
+        hot: true,
+		port: 3000
     },
     plugins: [
         isDevelopment && new ReactRefreshWebpackPlugin(),

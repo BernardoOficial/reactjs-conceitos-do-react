@@ -1,3 +1,11 @@
+import { Header } from './components/Header';
+import { TaskList } from './components/TaskList';
+
 export function App() {
-    return <h1>Hello world! Bernardo Pereira</h1>
+    return (
+		<>
+			<Header />
+			<TaskList />
+		</>
+	)
 }
