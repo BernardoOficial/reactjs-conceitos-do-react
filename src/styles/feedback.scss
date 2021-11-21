@@ -2,7 +2,8 @@
 	position: fixed;
 	top: 30px;
 	right: -100%;
-	transition: 1s ease-in;
+	transition: 2s ease-in;
+	transition-delay: 1s;
 	background-color: #323232;
 	box-shadow: 0 0 5px 1px rgba(0,0,0,0.2);
 	border-radius: 0.5rem;

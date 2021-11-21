@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Feedback } from './Feedback';
 import { FiTrash, FiCheckSquare } from 'react-icons/fi';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import '../styles/tasklist.scss';
 
@@ -14,7 +16,8 @@ export function TaskList() {
 
 	const [listTask, setListTask] = useState<Task[]>([]);
 	const [task, setTask] = useState('');
-
+	
+	
 	function handleTask(event: React.ChangeEvent<HTMLInputElement>) {		
 		if(event.target) { setTask(event.target.value); }
 	}
@@ -35,12 +38,26 @@ export function TaskList() {
 		const newTask = { id, title: task, isComplete: false }
 		setListTask([...listTask, newTask]);
 		setTask('');
+		toast.success(`to-do: ${newTask.title.slice(0, 15)}... criado`, {
+			position: toast.POSITION.TOP_RIGHT
+		});
 	}
 
 	function handleToggleTaskCompletion(taskId: number) {
 		const newList = listTask.map(task => {
 			if(task.id === taskId) {
 				task.isComplete = !task.isComplete
+
+				if(task.isComplete) {
+					toast.success(`to-do: ${task.title.slice(0, 15)}... mudou para concluído`, {
+						position: toast.POSITION.TOP_RIGHT
+					});
+				}
+				else {
+					toast.success(`to-do: ${task.title.slice(0, 15)}... mudou para não concluído`, {
+						position: toast.POSITION.TOP_RIGHT
+					});
+				}
 				return task;
 			};
 			return task;
@@ -49,18 +66,30 @@ export function TaskList() {
 	}
 
 	function handleRemoveTask(taskId: number) {
-		const newList = listTask.filter(task => task.id !== taskId);
+		const newList = listTask.filter(task => {
+			if(task.id !== taskId) { return task };
+			toast.success(`to-do ${task.title.slice(0, 15)}... removido`, {
+				position: toast.POSITION.TOP_RIGHT
+			});
+		});
 		setListTask(newList);
 	}
 
 	return (
 		<main className="to-do__main container">
 
-			<Feedback
-				message="to-do criado com sucesso"
-				sucess={true}
+			<ToastContainer
+				position="top-right"
+				autoClose={2000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
 			/>
-
+			
 			<section className="to-do__main-header">
 
 				<h1 className="to-do__main-header-title">Minhas tasks</h1>
@@ -76,6 +105,7 @@ export function TaskList() {
 					<button
 						className="to-do__main-header__create-task-button"
 						onClick={handleCreateNewTask}
+						onKeyUp={handleCreateNewTask}
 					>
 						<FiCheckSquare />
 					</button>
