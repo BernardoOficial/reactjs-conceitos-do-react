@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack serve",
     "build": "cross-env NODE_ENV=production webpack",
-	"test": "jest --watchAll"
+    "test": "jest --watchAll"
   },
   "author": "Bernardo Pereira Oliveira",
   "repository": {

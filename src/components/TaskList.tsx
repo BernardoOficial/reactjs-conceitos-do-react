@@ -17,7 +17,6 @@ export function TaskList() {
 	const [listTask, setListTask] = useState<Task[]>([]);
 	const [task, setTask] = useState('');
 	
-	
 	function handleTask(event: React.ChangeEvent<HTMLInputElement>) {		
 		if(event.target) { setTask(event.target.value); }
 	}
